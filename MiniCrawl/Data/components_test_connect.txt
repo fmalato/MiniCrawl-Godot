@@ -1,0 +1,9 @@
+room_1,room_1,room_1,room_1
+room_2I,room_2I,room_2I,room_2I
+room_2L,room_2L,room_2L,room_2L
+room_3,room_3,room_3,room_3
+room_4,room_4,room_4,room_4
+junction_T,junction_T,junction_T,junction_T
+junction_L,junction_L,junction_L,junction_L
+junction_X,junction_X,junction_X,junction_X
+corridor,corridor,corridor,corridor

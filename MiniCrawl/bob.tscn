@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8kvw7e5mwsyw"]
+
+[ext_resource type="Script" path="res://bob.gd" id="1_v5x4n"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4ncna"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m26di"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="Bob" type="CharacterBody3D"]
+script = ExtResource("1_v5x4n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_4ncna")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_m26di")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000892401, 0.0101803, 0.217577)
+fov = 70.3125
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+omni_range = 25.0
+omni_attenuation = 0.0245181

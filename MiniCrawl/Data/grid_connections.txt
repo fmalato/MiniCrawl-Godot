@@ -1,0 +1,5 @@
+room_2L,corridor,junction_T,room_3,junction_L
+junction_T,junction_T,junction_X,junction_X,junction_L
+room_3,junction_T,room_3,junction_X,junction_L
+junction_T,corridor,corridor,junction_X,room_2L
+room_1,empty,empty,junction_L,room_1
