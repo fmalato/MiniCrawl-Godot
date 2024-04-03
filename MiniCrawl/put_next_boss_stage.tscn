@@ -1,0 +1,100 @@
+[gd_scene load_steps=16 format=3 uid="uid://bxry5cshft7lp"]
+
+[ext_resource type="PackedScene" uid="uid://c7gskyb5qrs2e" path="res://Assets/Models/boss_room.glb" id="1_dcbtc"]
+[ext_resource type="Script" path="res://put_next_boss_stage.gd" id="2_ok58t"]
+[ext_resource type="PackedScene" uid="uid://b8kvw7e5mwsyw" path="res://bob.tscn" id="2_w3f37"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y5m8b"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_twa5a"]
+material = SubResource("StandardMaterial3D_y5m8b")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mcheh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hen1u"]
+albedo_color = Color(1, 0.984314, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vteip"]
+material = SubResource("StandardMaterial3D_hen1u")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n3njx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rlw7y"]
+albedo_color = Color(0, 0.501961, 0.0431373, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vnsw6"]
+material = SubResource("StandardMaterial3D_rlw7y")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wcnie"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3op1"]
+albedo_color = Color(0, 0.0235294, 0.74902, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c7y70"]
+material = SubResource("StandardMaterial3D_n3op1")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4i5uq"]
+
+[node name="PutNextBossStage" instance=ExtResource("1_dcbtc")]
+script = ExtResource("2_ok58t")
+
+[node name="Cubes" type="Node3D" parent="." index="1"]
+
+[node name="Red" type="RigidBody3D" parent="Cubes" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0.4, 7.5)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cubes/Red" index="0"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+mesh = SubResource("BoxMesh_twa5a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cubes/Red" index="1"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+shape = SubResource("BoxShape3D_mcheh")
+
+[node name="Yellow" type="RigidBody3D" parent="Cubes" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.4, 7.5)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cubes/Yellow" index="0"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+mesh = SubResource("BoxMesh_vteip")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cubes/Yellow" index="1"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+shape = SubResource("BoxShape3D_n3njx")
+
+[node name="Green" type="RigidBody3D" parent="Cubes" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0.4, -7.5)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cubes/Green" index="0"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+mesh = SubResource("BoxMesh_vnsw6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cubes/Green" index="1"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+shape = SubResource("BoxShape3D_wcnie")
+
+[node name="Blue" type="RigidBody3D" parent="Cubes" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.4, -7.5)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cubes/Blue" index="0"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+mesh = SubResource("BoxMesh_c7y70")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cubes/Blue" index="1"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+shape = SubResource("BoxShape3D_4i5uq")
+
+[node name="Bob" parent="." index="2" instance=ExtResource("2_w3f37")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Prompt" type="Label3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62709, -8.99)
+text = "GREEN
+near
+BLUE"
+font_size = 96

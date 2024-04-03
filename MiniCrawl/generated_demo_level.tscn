@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgemgwnwu8c1k"]
+[gd_scene load_steps=9 format=3 uid="uid://dgemgwnwu8c1k"]
 
 [ext_resource type="Script" path="res://GeneratedDemoLevel.gd" id="1_fkjmy"]
-[ext_resource type="MeshLibrary" uid="uid://cr1kpd3wgg7uc" path="res://MeshLibraries/connections.tres" id="2_a2tmo"]
+[ext_resource type="MeshLibrary" uid="uid://c0ukitaw3lfb0" path="res://MeshLibraries/connections.tres" id="2_a2tmo"]
 [ext_resource type="PackedScene" uid="uid://b8kvw7e5mwsyw" path="res://bob.tscn" id="3_u4iy6"]
 [ext_resource type="Script" path="res://FPSCounter.gd" id="4_tt38q"]
 [ext_resource type="PackedScene" uid="uid://dfdb2o3qf72bv" path="res://key.tscn" id="5_2yvo5"]
+[ext_resource type="Script" path="res://HTTPRequest.gd" id="6_3ka55"]
+[ext_resource type="Script" path="res://step_counter.gd" id="7_qhl3r"]
+[ext_resource type="Script" path="res://LevelCounter.gd" id="8_1wk0c"]
 
 [node name="GeneratedDemoLevel" type="Node3D"]
 script = ExtResource("1_fkjmy")
@@ -17,8 +20,37 @@ cell_size = Vector3(6, 3, 6)
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 84.469, 0)
 
 [node name="FPSCounter" type="Label" parent="."]
+modulate = Color(0.780392, 0.635294, 0.0627451, 1)
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("4_tt38q")
 
 [node name="Key" parent="." instance=ExtResource("5_2yvo5")]
+
+[node name="InitServerRequest" type="HTTPRequest" parent="."]
+script = ExtResource("6_3ka55")
+
+[node name="StepCounter" type="Label" parent="."]
+modulate = Color(0.780392, 0.635294, 0.0627451, 1)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+script = ExtResource("7_qhl3r")
+
+[node name="BuildFloorRequest" type="HTTPRequest" parent="."]
+
+[node name="LevelCounter" type="Label" parent="."]
+modulate = Color(0.780392, 0.635294, 0.0627451, 1)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+script = ExtResource("8_1wk0c")
+
+[node name="ShutdownRequest" type="HTTPRequest" parent="."]
