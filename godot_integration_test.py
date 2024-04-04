@@ -4,6 +4,7 @@ import os, signal
 from flask import Flask, request
 import mss
 import numpy as np
+import cv2
 
 from minicrawl.dungeon_master import DungeonMaster
 
@@ -49,7 +50,9 @@ class GymFlaskServer:
         self.window_height = None
         self.monitor = None
         self.image = None
-        self.dungeon_master = DungeonMaster(starting_grid_size=3, max_grid_size=8, increment_freq=5, connection_density=0.5)
+        self.dungeon_master = DungeonMaster(starting_grid_size=3, max_grid_size=8, increment_freq=2, connection_density=0.5)
+        self.fourcc = cv2.VideoWriter_fourcc(*'DIVX')
+        self.video_record = cv2.VideoWriter('videos/test.avi', self.fourcc, 20.0, (800, 600))
 
         @self.app.route("/")
         def index():
@@ -79,12 +82,12 @@ class GymFlaskServer:
             assert self.monitor, "Initialize server first!"
             with mss.mss() as sct:
                 obs = np.array(sct.grab(self.monitor))
+                self.video_record.write(obs)
 
             return {"action": str(random.randint(1, 4))}
 
         @self.app.route("/get_maze_map", methods=['GET'])
         def get_maze_map():
-            self.dungeon_master.increment_level()
             maze_graph, maze_grid = self.dungeon_master.get_current_floor()
             connections = self.dungeon_master.get_connections()
             connects = np.empty(shape=maze_grid.shape, dtype=object)
@@ -126,8 +129,7 @@ class GymFlaskServer:
             data = {
                 "connections": connections_string,
                 "orientations": orientations_string,
-                "level": self.dungeon_master.get_current_level(),
-                "level_type": "dungeon_floor" if "boss_room" not in connections_string else "boss_stage"
+                "level": self.dungeon_master.get_current_level()
             }
             """data = {
                 "connections": "junction_T,junction_L,dead_end,corridor\njunction_T,junction_L,dead_end,corridor\njunction_T,junction_L,dead_end,corridor\njunction_T,junction_L,dead_end,corridor\n",
@@ -136,10 +138,29 @@ class GymFlaskServer:
 
             return json.dumps(data).encode('utf-8')
 
+        @self.app.route("/get_new_floor", methods=['GET'])
+        def get_new_floor():
+            level_name = self.dungeon_master.increment_level()
+            data = {
+                "level_name": level_name
+            }
+
+            return json.dumps(data).encode('utf-8')
+
+        @self.app.route("/level_completed", methods=['POST'])
+        def level_completed():
+            data = request.get_json()
+            print(data["success"])
+
+            return str(200)
+
         @self.app.route("/shutdown", methods=['POST'])
         def shutdown():
             data = request.get_json()
+            print(data["success"])
             if data["message"] == "SHUTDOWN_REQUEST":
+                self.video_record.release()
+                cv2.destroyAllWindows()
                 self.shutdown_server()
                 return {"response_code": str(200), "message": "SHUTDOWN_COMPLETE"}
             else:

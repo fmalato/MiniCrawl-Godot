@@ -1,40 +1,51 @@
-[gd_scene load_steps=16 format=3 uid="uid://bxry5cshft7lp"]
+[gd_scene load_steps=23 format=3 uid="uid://bxry5cshft7lp"]
 
 [ext_resource type="PackedScene" uid="uid://c7gskyb5qrs2e" path="res://Assets/Models/boss_room.glb" id="1_dcbtc"]
 [ext_resource type="Script" path="res://put_next_boss_stage.gd" id="2_ok58t"]
 [ext_resource type="PackedScene" uid="uid://b8kvw7e5mwsyw" path="res://bob.tscn" id="2_w3f37"]
+[ext_resource type="Script" path="res://FPSCounter.gd" id="4_mg230"]
+[ext_resource type="Script" path="res://step_counter.gd" id="5_5vwkl"]
+[ext_resource type="Script" path="res://LevelCounter.gd" id="6_ma5dp"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y5m8b"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ef1vs"]
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_twa5a"]
-material = SubResource("StandardMaterial3D_y5m8b")
+material = SubResource("StandardMaterial3D_ef1vs")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mcheh"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hen1u"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g3cu1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tti56"]
 albedo_color = Color(1, 0.984314, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_vteip"]
-material = SubResource("StandardMaterial3D_hen1u")
+material = SubResource("StandardMaterial3D_tti56")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n3njx"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rlw7y"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ul02d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vyvu7"]
 albedo_color = Color(0, 0.501961, 0.0431373, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_vnsw6"]
-material = SubResource("StandardMaterial3D_rlw7y")
+material = SubResource("StandardMaterial3D_vyvu7")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wcnie"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3op1"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_py2ef"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bagj2"]
 albedo_color = Color(0, 0.0235294, 0.74902, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_c7y70"]
-material = SubResource("StandardMaterial3D_n3op1")
+material = SubResource("StandardMaterial3D_bagj2")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4i5uq"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_w3n15"]
 
 [node name="PutNextBossStage" instance=ExtResource("1_dcbtc")]
 script = ExtResource("2_ok58t")
@@ -53,6 +64,12 @@ mesh = SubResource("BoxMesh_twa5a")
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 shape = SubResource("BoxShape3D_mcheh")
 
+[node name="NearbyArea" type="Area3D" parent="Cubes/Red" index="2"]
+transform = Transform3D(1.5, 0, 0, 0, 0.35, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cubes/Red/NearbyArea" index="0"]
+shape = SubResource("CylinderShape3D_g3cu1")
+
 [node name="Yellow" type="RigidBody3D" parent="Cubes" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.4, 7.5)
 metadata/_edit_group_ = true
@@ -64,6 +81,12 @@ mesh = SubResource("BoxMesh_vteip")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cubes/Yellow" index="1"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 shape = SubResource("BoxShape3D_n3njx")
+
+[node name="NearbyArea" type="Area3D" parent="Cubes/Yellow" index="2"]
+transform = Transform3D(1.5, 0, 0, 0, 0.35, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cubes/Yellow/NearbyArea" index="0"]
+shape = SubResource("CylinderShape3D_ul02d")
 
 [node name="Green" type="RigidBody3D" parent="Cubes" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0.4, -7.5)
@@ -77,6 +100,12 @@ mesh = SubResource("BoxMesh_vnsw6")
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 shape = SubResource("BoxShape3D_wcnie")
 
+[node name="NearbyArea" type="Area3D" parent="Cubes/Green" index="2"]
+transform = Transform3D(1.5, 0, 0, 0, 0.35, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cubes/Green/NearbyArea" index="0"]
+shape = SubResource("CylinderShape3D_py2ef")
+
 [node name="Blue" type="RigidBody3D" parent="Cubes" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.4, -7.5)
 metadata/_edit_group_ = true
@@ -89,6 +118,12 @@ mesh = SubResource("BoxMesh_c7y70")
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 shape = SubResource("BoxShape3D_4i5uq")
 
+[node name="NearbyArea" type="Area3D" parent="Cubes/Blue" index="2"]
+transform = Transform3D(1.5, 0, 0, 0, 0.35, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cubes/Blue/NearbyArea" index="0"]
+shape = SubResource("CylinderShape3D_w3n15")
+
 [node name="Bob" parent="." index="2" instance=ExtResource("2_w3f37")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
@@ -98,3 +133,34 @@ text = "GREEN
 near
 BLUE"
 font_size = 96
+
+[node name="LevelCompletedRequest" type="HTTPRequest" parent="." index="4"]
+
+[node name="LevelFailedRequest" type="HTTPRequest" parent="." index="5"]
+
+[node name="FPSCounter" type="Label" parent="." index="6"]
+modulate = Color(0.780392, 0.635294, 0.0627451, 1)
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("4_mg230")
+
+[node name="StepCounter" type="Label" parent="." index="7"]
+modulate = Color(0.780392, 0.635294, 0.0627451, 1)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+script = ExtResource("5_5vwkl")
+
+[node name="LevelCounter" type="Label" parent="." index="8"]
+modulate = Color(0.780392, 0.635294, 0.0627451, 1)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+script = ExtResource("6_ma5dp")

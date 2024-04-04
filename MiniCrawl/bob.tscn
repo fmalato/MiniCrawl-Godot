@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8kvw7e5mwsyw"]
+[gd_scene load_steps=5 format=3 uid="uid://b8kvw7e5mwsyw"]
 
 [ext_resource type="Script" path="res://bob.gd" id="1_v5x4n"]
 
@@ -7,6 +7,8 @@ size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m26di"]
 size = Vector3(0.5, 1.5, 0.5)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_80t2v"]
 
 [node name="Bob" type="CharacterBody3D"]
 script = ExtResource("1_v5x4n")
@@ -27,3 +29,9 @@ omni_range = 25.0
 omni_attenuation = 0.0245181
 
 [node name="GetActionRequest" type="HTTPRequest" parent="."]
+
+[node name="PickUpArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickUpArea"]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+shape = SubResource("CylinderShape3D_80t2v")

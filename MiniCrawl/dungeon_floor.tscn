@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://dgemgwnwu8c1k"]
+
+[ext_resource type="Script" path="res://dungeon_floor.gd" id="1_lskuw"]
+[ext_resource type="MeshLibrary" uid="uid://c0ukitaw3lfb0" path="res://MeshLibraries/connections.tres" id="2_rsvlu"]
+[ext_resource type="PackedScene" uid="uid://b8kvw7e5mwsyw" path="res://bob.tscn" id="3_jpkla"]
+[ext_resource type="Script" path="res://FPSCounter.gd" id="4_ay6ge"]
+[ext_resource type="PackedScene" uid="uid://dfdb2o3qf72bv" path="res://key.tscn" id="5_car74"]
+[ext_resource type="Script" path="res://HTTPRequest.gd" id="6_gbu3l"]
+[ext_resource type="Script" path="res://step_counter.gd" id="7_qfloj"]
+[ext_resource type="Script" path="res://LevelCounter.gd" id="8_u4ys7"]
+[ext_resource type="Script" path="res://PositionLabel.gd" id="9_rrbn3"]
+
+[node name="DungeonFloor" type="Node3D"]
+script = ExtResource("1_lskuw")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("2_rsvlu")
+cell_size = Vector3(6, 0.001, 6)
+
+[node name="Bob" parent="." instance=ExtResource("3_jpkla")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 84.469, 0)
+
+[node name="FPSCounter" type="Label" parent="."]
+modulate = Color(0.780392, 0.635294, 0.0627451, 1)
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("4_ay6ge")
+
+[node name="Key" parent="." instance=ExtResource("5_car74")]
+
+[node name="InitServerRequest" type="HTTPRequest" parent="."]
+script = ExtResource("6_gbu3l")
+
+[node name="StepCounter" type="Label" parent="."]
+modulate = Color(0.780392, 0.635294, 0.0627451, 1)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+script = ExtResource("7_qfloj")
+
+[node name="BuildFloorRequest" type="HTTPRequest" parent="."]
+
+[node name="LevelCounter" type="Label" parent="."]
+modulate = Color(0.780392, 0.635294, 0.0627451, 1)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+script = ExtResource("8_u4ys7")
+
+[node name="ShutdownRequest" type="HTTPRequest" parent="."]
+
+[node name="LevelCompletedRequest" type="HTTPRequest" parent="."]
+
+[node name="PositionLabel" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("9_rrbn3")
