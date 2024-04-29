@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://buimtrkrrrstk"]
+
+[ext_resource type="Script" path="res://Scenes/Boss/avoid_obstacles_boss_stage.gd" id="1_fjk2d"]
+[ext_resource type="PackedScene" uid="uid://c7gskyb5qrs2e" path="res://Assets/Models/boss_room.glb" id="2_qse74"]
+[ext_resource type="PackedScene" uid="uid://b8kvw7e5mwsyw" path="res://bob.tscn" id="3_kthij"]
+[ext_resource type="PackedScene" uid="uid://dfdb2o3qf72bv" path="res://key.tscn" id="4_l8yy6"]
+[ext_resource type="PackedScene" uid="uid://cq5085kou532v" path="res://Scenes/Misc/blue_ball.tscn" id="5_v18no"]
+
+[node name="AvoidObstacles" type="Node3D"]
+script = ExtResource("1_fjk2d")
+
+[node name="boss_room" parent="." instance=ExtResource("2_qse74")]
+
+[node name="Bob" parent="." instance=ExtResource("3_kthij")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.504, 1.5, 7.407)
+
+[node name="Prompt" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64901, -8.99)
+text = "Avoid BLUE BALLS
+and
+Collect KEY"
+font_size = 96
+
+[node name="Key" parent="." instance=ExtResource("4_l8yy6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.50817, 1.11994, -8.23596)
+
+[node name="Obstacles" type="Node3D" parent="."]
+
+[node name="BlueBall0" parent="Obstacles" instance=ExtResource("5_v18no")]
+
+[node name="BlueBall1" parent="Obstacles" instance=ExtResource("5_v18no")]
+
+[node name="BlueBall2" parent="Obstacles" instance=ExtResource("5_v18no")]
+
+[node name="BlueBall3" parent="Obstacles" instance=ExtResource("5_v18no")]
+
+[node name="BlueBall4" parent="Obstacles" instance=ExtResource("5_v18no")]
+
+[node name="BlueBall5" parent="Obstacles" instance=ExtResource("5_v18no")]
+
+[node name="BlueBall6" parent="Obstacles" instance=ExtResource("5_v18no")]
+
+[node name="BlueBall7" parent="Obstacles" instance=ExtResource("5_v18no")]
+
+[node name="BlueBall8" parent="Obstacles" instance=ExtResource("5_v18no")]
+
+[node name="BlueBall9" parent="Obstacles" instance=ExtResource("5_v18no")]
+
+[node name="ShutdownRequest" type="HTTPRequest" parent="."]

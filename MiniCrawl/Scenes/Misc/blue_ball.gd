@@ -1,11 +1,11 @@
-extends Label
+extends Node3D
 
-@onready var current_scene = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	pass # Replace with function body.
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if current_scene != null:
-		set_text("Step: " + str(get_parent().get_current_timestep()))
+	pass

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfdb2o3qf72bv"]
+[gd_scene load_steps=5 format=3 uid="uid://dfdb2o3qf72bv"]
 
 [ext_resource type="ArrayMesh" uid="uid://b5fy5pldnxqy2" path="res://Assets/Models/key_mesh.res" id="1_8cfnm"]
 [ext_resource type="Script" path="res://key.gd" id="1_31vac"]
+[ext_resource type="Script" path="res://MinimapMarker.gd" id="3_bpjck"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wjow0"]
 size = Vector3(0.0490036, 0.641296, 0.241211)
@@ -16,5 +17,14 @@ mesh = ExtResource("1_8cfnm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00178909, 0.0566711, 0.00366211)
 shape = SubResource("BoxShape3D_wjow0")
+
+[node name="MinimapMarker" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1110, 607)
+script = ExtResource("3_bpjck")
+
+[node name="Polygon2D" type="Polygon2D" parent="MinimapMarker"]
+color = Color(1, 1, 0, 1)
+polygon = PackedVector2Array(4, -26, 25, -1, -2, 20, -21, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

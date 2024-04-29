@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn3tjcwsny873"]
+
+[ext_resource type="Script" path="res://Scenes/Menus/agreement.gd" id="1_2rcv1"]
+
+[node name="Agreement" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2rcv1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer"]
+layout_mode = 2
+split_offset = 600
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VSplitContainer"]
+layout_mode = 2
+text = "AGREEMENT
+
+ By agreeing you:
+     - ... confirm you recognize what data will be collected and how
+       it will be used.
+     - ... fulfill the specified requirements.
+     - ... acknowledge there is no compensation.
+     - ... acknowledge your participation is voluntary and you may withdraw at
+       any point before end of the experiment."
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VSplitContainer"]
+layout_mode = 2
+split_offset = 576
+
+[node name="Accept" type="Button" parent="MarginContainer/VSplitContainer/HSplitContainer"]
+layout_mode = 2
+text = "ACCEPT"
+
+[node name="Refuse" type="Button" parent="MarginContainer/VSplitContainer/HSplitContainer"]
+layout_mode = 2
+text = "REFUSE"

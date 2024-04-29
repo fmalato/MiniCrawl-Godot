@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyrhe0r76oj3p"]
+
+[sub_resource type="GDScript" id="GDScript_s2h3p"]
+script/source = "extends Control
+
+var gathering_data = true
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	if !gathering_data:
+		get_tree().change_scene_to_file(\"res://Scenes/dungeon_crawler.tscn\")
+	$MarginContainer/VSplitContainer/Button.pressed.connect(_on_next_pressed)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func _on_next_pressed():
+	get_tree().change_scene_to_file(\"res://Scenes/Menus/agreement.tscn\")
+"
+
+[node name="Instructions" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_s2h3p")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer"]
+layout_mode = 2
+split_offset = 600
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VSplitContainer"]
+layout_mode = 2
+text = "ORGANIZER: Federico Malato (federico.malato@uef.fi), School of Computing, University of Eastern Finland
+ ------------------------------------------------------------------------------
+ PURPOSE OF THE STUDY:
+     1) Establish a human-normalized baseline for the environment
+     2) Gather a dataset of demonstrations for imitation learning
+
+ WHAT DATA WILL BE COLLECTED AND HOW
+     In these experiments, you will explore a dungeon with 20 levels of depth.
+     Your objective is to go as deep as you can. If you fail one level, the game will restart.
+     
+     The game will automatically create a results folder. The folder will be placed in the same folder 
+     where you downloaded the game, and will be  called as a random sequence of numbers and letters.
+     
+     All data will be anonymous and no private information will be collected.
+
+     THE RECORDED DATA WILL BE USED TO...
+
+     1) ... evaluate the quality and the difficulty of the environment.
+     2) ... provide a core dataset for future studies.
+
+     This data may be released to the public and be used in future research.
+
+ REQUIREMENTS:
+     - A keyboard
+     - 25 minutes of uninterrupted time (you can not pause the experiment)"
+
+[node name="Button" type="Button" parent="MarginContainer/VSplitContainer"]
+layout_mode = 2
+text = "Next"

@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgemgwnwu8c1k"]
+
+[ext_resource type="Script" path="res://Scenes/dungeon_floor.gd" id="1_lskuw"]
+[ext_resource type="MeshLibrary" uid="uid://c0ukitaw3lfb0" path="res://MeshLibraries/connections.tres" id="2_rsvlu"]
+[ext_resource type="PackedScene" uid="uid://b8kvw7e5mwsyw" path="res://bob.tscn" id="3_jpkla"]
+[ext_resource type="PackedScene" uid="uid://dfdb2o3qf72bv" path="res://key.tscn" id="5_car74"]
+
+[node name="DungeonFloor" type="Node3D"]
+script = ExtResource("1_lskuw")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("2_rsvlu")
+cell_size = Vector3(6, 0.001, 6)
+
+[node name="Bob" parent="." instance=ExtResource("3_jpkla")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 84.469, 0)
+
+[node name="Key" parent="." instance=ExtResource("5_car74")]
