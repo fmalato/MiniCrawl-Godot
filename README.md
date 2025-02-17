@@ -1,4 +1,4 @@
-Please refer to [MiniCrawl](https://github.com/fmalato/MiniCrawl) for more information about the environment. Both projects are required to correctly run the environment. This projects improves performance of MiniCrawl by detaching from the MiniWorld library and using Godot instead.
+Please refer to [MiniCrawl](https://github.com/fmalato/MiniCrawl) for more information about the environment. Both projects are required to correctly run the environment. This project is a re-implementation of MiniCrawl using Godot for better performance.
 
 # Installation
 To correctly install the environment, please make sure that you have correctly installed [Godot 4](https://godotengine.org/) and [MiniCrawl](https://github.com/fmalato/MiniCrawl) first.
