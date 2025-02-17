@@ -1,5 +1,10 @@
 Please refer to [MiniCrawl](https://github.com/fmalato/MiniCrawl) for more information about the environment. Both projects are required to correctly run the environment. This project is a re-implementation of MiniCrawl using Godot for better performance.
 
+# Some visuals
+Exploration level: https://github.com/user-attachments/assets/35fa33e6-7fb6-48a1-9cff-5018cf908ad8
+
+Boss stage: https://github.com/user-attachments/assets/c1e6cd91-f24a-456f-8f85-97e04726b5cb
+
 # Installation
 To correctly install the environment, please make sure that you have correctly installed [Godot 4](https://godotengine.org/) and [MiniCrawl](https://github.com/fmalato/MiniCrawl) first.
 
