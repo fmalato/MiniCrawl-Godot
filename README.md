@@ -3,12 +3,16 @@ Please refer to [MiniCrawl](https://github.com/fmalato/MiniCrawl) for more infor
 # Installation
 To correctly install the environment, please make sure that you have correctly installed [Godot 4](https://godotengine.org/) and [MiniCrawl](https://github.com/fmalato/MiniCrawl) first.
 
-The environment can be played by cloning this repository, compiling with Godot and running the resulting .exe.
+To play the environment:
+- Clone this repo;
+- Compile the project using Godot;
+- Run the [python socket](https://github.com/fmalato/MiniCrawl/blob/main/godot_integration_test_socket.py);
+- Run the compiled .exe of the game.
 
 # Features
 - The environment can be controlled by either a human player and an AI via a python integration (uses Gym).
 - Fully customizable: you can choose depth, frequency and type of bosses, duration of an episode, reward shape.
-- Maps are sequentially geerated using Pyhton and numpy for fast generation and efficient storage. The generation algorithm can easily be extended by editing the [DungeonMaster]((https://github.com/fmalato/MiniCrawl/blob/main/minicrawl/dungeon_master.py)). You can also implement your own algorithm by replacing the DungeonMaster with your own.
+- Maps are sequentially geerated using Pyhton and numpy for fast generation and efficient storage. The generation algorithm can easily be extended by editing the [DungeonMaster](https://github.com/fmalato/MiniCrawl/blob/main/minicrawl/dungeon_master.py). You can also implement your own algorithm by replacing the DungeonMaster with your own.
 - Fast: can run at up to 2500FPS on a consumer laptop (Intel i7 13650HX, RTX 4080).
 - You can record your own gameplay for Imitation Learning training, or use the implemented reward function for Reinforcement Learning.
 
